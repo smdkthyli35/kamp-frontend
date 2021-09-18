@@ -11,7 +11,7 @@
   {{filterText}} aradınız..
 </div>
 
-<table *ngIf="dataLoaded==true" class="table table-bordered">
+<table *ngIf="dataLoaded==true" class="table">
   <thead>
     <tr>
       <th>Ürün Id</th>
@@ -20,8 +20,10 @@
       <th>Birim Fiyatı</th>
       <th>Kdv'li Fiyat</th>
       <th>Stok Adeti</th>
+      <th></th>
     </tr>
   </thead>
+  <tbody>
   <tr *ngFor="let product of products | filterPipe:filterText">
     <td>{{product.productId}}</td>
     <td>{{product.productName | uppercase}}</td>
@@ -29,5 +31,7 @@
     <td>{{product.unitPrice}}</td>
     <td>{{product.unitPrice | vatAdded:18 | currency}}</td>
     <td>{{product.unitsInStock}}</td>
+    <td><button (click)="addToCard(product)" class="btn btn-success">Sepete Ekle</button></td>
   </tr>
+</tbody>
 </table>
